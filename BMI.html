@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI calculator</title>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(to left bottom, rgb(218, 48, 207), lightblue);
+            display: flex;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        .container {
+            background: rgb(255, 255, 255, .3);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 20px;
+            box-shadow: 0 10px 10px rgb(0, 0, 0, .3);
+            margin: 5px;
+
+        }
+
+        .heading {
+            font-size: 30px;
+
+
+        }
+
+        .input {
+            padding: 10px 20px;
+            font-size: 18px;
+            background: rgb(0, 0, 0, .20);
+            border-color: rgb(0, 0, 0, .5);
+            margin: 10px;
+            border-radius: 15px;
+
+        }
+        .btn{
+            background-color: rgb(202, 20, 190);
+            border:none;
+            padding: 10px 20px;
+            border-radius: 15px;
+            margin: 10px;
+            font-size: 20px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            box-shadow: 0 0 4px ;
+            cursor:pointer;
+
+        }
+        .btn:hover{
+            box-shadow: 0 0 8px ;
+            transition: all 300ms ease;
+
+        }
+        .info-text{
+         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+         font-size: 20px;
+         font-weight: 500;
+         
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="heading">Body Mass Index (BMI) calculator</h1>
+        Your height (cm) :
+        <input type="number" class="input" id="height" value="180" placeholder="Enter Your height in cm">
+        Your weight (kg) :
+        <input type="number" class="input" id="weight" value="80" placeholder="Enter Your weight in kg">
+        <button class="btn" id="btn">Compute BMI</button>
+        <input disabled type="text" class="input" id="bmi-result">
+        <h4 class="info-text">Health condition :<span id="weight-condition"></span></h4>
+
+    </div>
+    <script>
+         const btnEL=document.getElementById("btn")
+         const BMIinput=document.getElementById("bmi-result")
+         const MSGinput=document.getElementById("weight-condition")
+        function calculateBMI(){
+            const hid=document.getElementById("height").value/100
+            const wid=document.getElementById("weight").value
+
+
+            const BMI=wid/(hid*hid)
+            BMIinput.value=BMI
+            BMIinput.value = BMI.toFixed(2) 
+            if(BMI<18.5){
+                MSGinput.innerText="under weight";
+            }
+            else if(BMI>=18.5&& BMI<=24.9){
+                  MSGinput.innerText="normal weight";
+            }
+            else if(BMI>= 25 && BMI<=29.9){
+                  MSGinput.innerText="over weight";
+            }
+            else if( BMI>=30){
+                  MSGinput.innerText="Obesity";
+            }
+           
+        }
+         btnEL.addEventListener("click",calculateBMI)
+    </script>
+
+</body>
+
+</html>
